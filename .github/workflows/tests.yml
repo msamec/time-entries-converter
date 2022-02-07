@@ -27,7 +27,7 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ~/.m2/repository
-          key: "m2-${{ hashFiles('project.clj') }}"
+          key: "m2-${{ hashFiles('deps.edn') }}"
 
       - name: Run tests
         run: bin/kaocha
