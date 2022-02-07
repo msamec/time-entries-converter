@@ -1,0 +1,23 @@
+{:deps {org.clojure/clojure {:mvn/version "1.10.3"}
+        org.clojure/data.json {:mvn/version "2.4.0"}
+        clj-http/clj-http {:mvn/version "3.12.3"}
+        metosin/reitit {:mvn/version "0.5.15"}
+        ring/ring {:mvn/version "1.9.5"}
+        ring/ring-json {:mvn/version "0.5.1"}
+        ring/ring-defaults {:mvn/version "0.3.3"}
+        ring-oauth2/ring-oauth2 {:mvn/version "0.2.0"}
+        hiccup/hiccup {:mvn/version "1.0.5"}
+        clojure.java-time/clojure.java-time {:mvn/version "0.3.3"}
+        org.postgresql/postgresql {:mvn/version "42.3.1"}
+        com.verybigthings/penkala {:git/url "https://github.com/retro/penkala"
+                                   :sha "8f38814dcfe5a23ee2c6fcdd5d2c48ccd6f4f1c7"}
+        com.github.seancorfield/next.jdbc {:mvn/version "1.2.761"}
+        dev.weavejester/ragtime {:mvn/version "0.9.0"}
+        clj-jwt/clj-jwt {:mvn/version "0.1.1"}
+        integrant/integrant {:mvn/version "0.8.0"}
+        aero/aero {:mvn/version "1.1.6"}}
+
+ :paths ["src" "resources"]
+ :aliases
+ {:test {:extra-deps {lambdaisland/kaocha {:mvn/version "1.60.977"}}
+         :extra-paths ["test"]}}}
