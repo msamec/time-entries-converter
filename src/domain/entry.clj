@@ -4,7 +4,7 @@
 
 (defrecord Entry [id task-id description duration start-date start-time])
 
-(defn extract-task-id-and-description [log]
+(defn- extract-task-id-and-description [log]
   (as-> log s
     (str/split s #"\|")
     (map str/trim s)))
@@ -14,6 +14,7 @@
   [id log duration start]
   {:pre [(string? id)
          (string? log)
+         (.contains log "|")
          (int? duration)
          (string? start)]} ;TODO consider validating against iso8601
   (let [[task-id description] (extract-task-id-and-description log)
