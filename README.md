@@ -1,6 +1,10 @@
+
 # Toggl -> Tempo (MVP)
 
-Convert Toggl entries into Tempo worklogs
+Convert Toggl entries into Tempo worklogs. Using toggl api key fetch all entires (last 9 days) that do not have `synced` tag. Task description must consist of task id and decription separated by pipeline `|` character. On sync it will send request to tempo api and add time log.
+
+![image](https://user-images.githubusercontent.com/4154034/152775907-6a85c1f3-d81f-429e-8243-9f60d4b14262.png)
+
 
 ## Requirements
 
@@ -22,8 +26,8 @@ Create `.secrets.end` file in resources folder with following keys (insert valid
                  :scopes ["openid"]
                  :launch-uri "/oauth2/google"
                  :redirect-uri "/oauth2/google/callback"
-                 :landing-uri "/"}}```
-
+                 :landing-uri "/"}}
+```
 ### Initialize DB
 
 ```
@@ -68,3 +72,4 @@ clj -m infrastructure.server
 - [] loading overlay when syncing starts
 - [] migration
 - [] default 404 and 500 page
+
