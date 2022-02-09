@@ -1,6 +1,7 @@
 (ns infrastructure.database.credential
   (:require [com.verybigthings.penkala.next-jdbc :refer [get-env insert! select-one!]]
             [com.verybigthings.penkala.relation :as r]
+            [integrant.core :as ig]
             [domain.credential :refer [create-credential]]
             [domain.credential-repository :refer [CredentialRepository -save! -fetch!]]))
 
@@ -21,7 +22,7 @@
                      :options options}]
     (insert! db-credential (-> (credentials-ins db-credential) (r/on-conflict-do-update [:user-id] insert-data)) insert-data)))
 
-(defn new-credential-repository [db-uri]
+(defmethod ig/init-key :infrastructure.database/credential [_ {:keys [db-uri]}]
   (let [db-credential (get-env db-uri)]
     (reify CredentialRepository
       (-save! [this user-id options] (save! db-credential user-id options))
