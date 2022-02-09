@@ -1,6 +1,7 @@
 (ns infrastructure.http.tempo
   (:require [clj-http.client :as client]
             [clojure.data.json :as json]
+            [integrant.core :as ig]
             [domain.worklog-repository :refer [WorklogRepository -save!]]))
 
 (defn prepare-entry [entry jira-accont-id]
@@ -27,7 +28,6 @@
      (prepare-entry jira-account-id)
      (send-request url api-key))))
 
-(defn new-worklog-repository []
+(defmethod ig/init-key :infrastructure.http/tempo [_ _]
   (reify WorklogRepository
     (-save! [this entry credential] (save! entry credential))))
-

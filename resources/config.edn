@@ -3,7 +3,8 @@
  :adapter/jetty {:handler #ig/ref :handler/run-app :port 3000}
  :oauth2/google #ref [:secrets :google-oauth2]
  :infrastructure.http/toggl {}
- :domain/entry-repository {:impl #ig/ref :infrastructure.http/toggl}
- :di/worklog {}
+ :domain/entry-repository {:impl #ig/ref :infrastructure.http/toggl} ;TODO: depenods on global state, not too happy about it
+ :infrastructure.http/tempo {}
+ :domain/worklog-repository {:impl #ig/ref :infrastructure.http/tempo} ;TODO: depenods on global state, not too happy about it
  :di/credential {:db-uri #ref [:secrets :db]}}
 

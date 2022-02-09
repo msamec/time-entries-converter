@@ -1,10 +1,8 @@
 (ns infrastructure.server
   (:require [ring.adapter.jetty :as jetty]
             [infrastructure.handler :as handler]
-            [infrastructure.http.tempo :as worklog-imp]
             [infrastructure.database.credential :as credential-imp]
             [domain.credential-repository :as credential-repository]
-            [domain.worklog-repository :as worklog-repository]
             [integrant.core :as ig]
             [aero.core :as aero]
             [clojure.java.io :refer [resource]]))
@@ -26,9 +24,6 @@
   credentials)
 
 (defmethod ig/init-key :secrets [_ _]) ;TODO does this really have to be here?
-
-(defmethod ig/init-key :di/worklog [_ _]
-  (worklog-repository/set-implementation! (worklog-imp/new-worklog-repository)))
 
 (defmethod ig/init-key :di/credential [_ {:keys [db-uri]}]
   (credential-repository/set-implementation! (credential-imp/new-credential-repository db-uri)))
