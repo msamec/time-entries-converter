@@ -62,6 +62,7 @@ clj -m infrastructure.server
 - [] extract oauth/db credentials to .secrets.edn
 - [] handle http requests other than 200
 - [] wrap-auth -> it should check validiti of jwt like exp, domain, etc.
+- [] simplify migration for development
 - [] test coverage
 
 ## NICE TO HAVE
@@ -70,6 +71,5 @@ clj -m infrastructure.server
 - [] add validation to request input data
 - [] use named routes insted of hardcoded
 - [] loading overlay when syncing starts
-- [] migration
 - [] default 404 and 500 page
 
