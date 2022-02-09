@@ -1,9 +1,10 @@
-(ns domain.worklog-repository)
+(ns domain.worklog-repository
+  (:require [integrant.core :as ig])) ;TODO not a fan of this here, domain should not know about infrastructure but I'll leave it for now
 
 (def save! nil)
 
 (defprotocol WorklogRepository
   (-save! [this entry credential]))
 
-(defn set-implementation! [impl]
+(defmethod ig/init-key :domain/worklog-repository [_ {:keys [impl]}]
   (def save! (partial -save! impl)))

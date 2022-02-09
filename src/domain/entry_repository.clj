@@ -10,7 +10,7 @@
   (-one! [this id options])
   (-add-tags! [this ids options]))
 
-(defmethod ig/init-key :domain/entry-repository [_ {:keys [impl] :as rest}]
+(defmethod ig/init-key :domain/entry-repository [_ {:keys [impl]}]
   (def all! (partial -all! impl))
   (def one! (partial -one! impl))
   (def add-tags! (partial -add-tags! impl)))
