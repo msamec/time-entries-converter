@@ -2,6 +2,8 @@
  :handler/run-app {:oauth2 #ig/ref :oauth2/google}
  :adapter/jetty {:handler #ig/ref :handler/run-app :port 3000}
  :oauth2/google #ref [:secrets :google-oauth2]
- :di/entry {}
+ :infrastructure.http/toggl {}
+ :domain/entry-repository {:impl #ig/ref :infrastructure.http/toggl}
  :di/worklog {}
  :di/credential {:db-uri #ref [:secrets :db]}}
+

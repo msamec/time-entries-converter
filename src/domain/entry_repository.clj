@@ -1,4 +1,5 @@
-(ns domain.entry-repository)
+(ns domain.entry-repository
+  (:require [integrant.core :as ig])) ;TODO not a fan of this here, domain should not know about infrastructure but I'll leave it for now
 
 (def all! nil)
 (def one! nil)
@@ -9,7 +10,7 @@
   (-one! [this id options])
   (-add-tags! [this ids options]))
 
-(defn set-implementation! [impl]
+(defmethod ig/init-key :domain/entry-repository [_ {:keys [impl] :as rest}]
   (def all! (partial -all! impl))
   (def one! (partial -one! impl))
   (def add-tags! (partial -add-tags! impl)))
