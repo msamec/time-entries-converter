@@ -25,9 +25,6 @@
 
 (defmethod ig/init-key :secrets [_ _]) ;TODO does this really have to be here?
 
-(defmethod ig/init-key :di/credential [_ {:keys [db-uri]}]
-  (credential-repository/set-implementation! (credential-imp/new-credential-repository db-uri)))
-
 (defn -main []
   (let [config config]
     (ig/load-namespaces config)

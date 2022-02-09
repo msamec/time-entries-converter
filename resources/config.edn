@@ -6,5 +6,7 @@
  :domain/entry-repository {:impl #ig/ref :infrastructure.http/toggl} ;TODO: depenods on global state, not too happy about it
  :infrastructure.http/tempo {}
  :domain/worklog-repository {:impl #ig/ref :infrastructure.http/tempo} ;TODO: depenods on global state, not too happy about it
- :di/credential {:db-uri #ref [:secrets :db]}}
+ :infrastructure.database/credential {:db-uri #ref [:secrets :db]}
+ :domain/credential-repository {:impl #ig/ref :infrastructure.database/credential} ;TODO: depenods on global state, not too happy about it
+ }
 
