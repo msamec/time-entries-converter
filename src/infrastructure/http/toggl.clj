@@ -2,6 +2,7 @@
   (:require [clj-http.client :as client]
             [clojure.data.json :as json]
             [clojure.string :as str]
+            [integrant.core :as ig]
             [domain.entry :refer [create-entry]]
             [domain.entry-repository :refer [EntryRepository -all! -one! -add-tags!]]))
 
@@ -67,7 +68,7 @@
                    :tag_action "add"}}
      (send-put-request url api-key))))
 
-(defn new-entry-repository []
+(defmethod ig/init-key :infrastructure.http/toggl [_ _]
   (reify EntryRepository
     (-all! [this credential] (all! credential))
     (-one! [this id credential] (one! id credential))
