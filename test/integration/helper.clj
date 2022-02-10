@@ -11,7 +11,7 @@
 
 (defn start-pg! []
   (-> (EmbeddedPostgres/builder)
-      (.setPort 59432)
+      (.setPort 54321)
       (.start)))
 
 (defn halt-pg! [pg]
