@@ -2,4 +2,6 @@
  {:tests [{:id :unit
            :test-paths ["test/unit"]
            :ns-patterns ["-test$"]}
-          ]}
+          {:id :integration
+           :test-paths ["test/integration"]
+           :ns-patterns ["-test$"]}]}

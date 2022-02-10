@@ -1,1 +1,1 @@
-DROP TABLE credentials;
+DROP TABLE credentialsx;

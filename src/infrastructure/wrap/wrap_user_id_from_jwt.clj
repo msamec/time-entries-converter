@@ -1,7 +1,7 @@
 (ns infrastructure.wrap.wrap-user-id-from-jwt
   (:require [clj-jwt.core :refer [str->jwt]]))
 
-(defn user-from-jwt [request]
+(defn- user-from-jwt [request]
   (->
    (get-in request [:session :ring.middleware.oauth2/access-tokens :google :id-token])
    str->jwt
