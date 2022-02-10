@@ -11,8 +11,6 @@
 
 (defn start-pg! []
   (-> (EmbeddedPostgres/builder)
-      (.setServerConfig "fsync" "off")
-      (.setServerConfig "full_page_writes" "off")
       (.setPort 59432)
       (.start)))
 

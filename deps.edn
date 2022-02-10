@@ -22,6 +22,6 @@
  :aliases
  {:test {:extra-deps {lambdaisland/kaocha {:mvn/version "1.60.977"}
                       nubank/state-flow {:mvn/version "5.14.1"}
-                      com.opentable.components/otj-pg-embedded {:mvn/version "0.7.1"}
+                      com.opentable.components/otj-pg-embedded {:mvn/version "0.13.4"}
                       org.slf4j/slf4j-log4j12 {:mvn/version "1.7.25"}}
          :extra-paths ["test"]}}}
