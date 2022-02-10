@@ -1,0 +1,33 @@
+name: Tests
+on:
+  push:
+    branhces:
+      - master
+      - 'feature/**'
+jobs:
+  clojure-cli:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Prepare java
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'zulu'
+          java-version: 11
+
+      - name: Install clojure tools
+        uses: DeLaGuardo/setup-clojure@3.7
+        with:
+          cli: 1.10.1.693
+
+      - name: Cache dependencies
+        uses: actions/cache@v2
+        with:
+          path: ~/.m2/repository
+          key: "m2-${{ hashFiles('deps.edn') }}"
+
+      - name: Run tests
+        run: bin/kaocha
