@@ -1,7 +1,7 @@
 (ns domain.date
   (:require [clojure.string :as str]))
 
-(defn parse-date [date]
+(defn- parse-date [date]
   (.parse
    (java.text.SimpleDateFormat. "yyyy-MM-dd'T'HH:mm:ss")
    date))
@@ -24,8 +24,9 @@
 (def seconds-in-hour (* 60 seconds-in-minute))
 (def seconds-in-day (* 24 seconds-in-hour))
 (def seconds-in-week (* 7 seconds-in-day))
- 
+
 (defn seconds->duration [seconds]
+  {:pre [(int? seconds)]}
   (let [weeks   ((juxt quot rem) seconds seconds-in-week)
         wk      (first weeks)
         days    ((juxt quot rem) (last weeks) seconds-in-day)
