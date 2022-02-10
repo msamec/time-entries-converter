@@ -29,5 +29,10 @@ jobs:
           path: ~/.m2
           key: "m2-${{ hashFiles('deps.edn') }}"
 
+      - name: Add .secrets.edn
+        run: echo $SECRET >> resources/.secrets.edn
+        env:
+          SECRET: ${{ secrets.SECRET }}
+
       - name: Run tests
         run: bin/kaocha
