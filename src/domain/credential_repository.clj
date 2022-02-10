@@ -1,4 +1,5 @@
-(ns domain.credential-repository)
+(ns domain.credential-repository
+  (:require [integrant.core :as ig]))
 
 (def save! nil)
 (def fetch! nil)
@@ -7,6 +8,6 @@
   (-save! [this user-id options])
   (-fetch! [this user-id]))
 
-(defn set-implementation! [impl]
+(defmethod ig/init-key :domain/credential-repository [_ {:keys [impl]}]
   (def save! (partial -save! impl))
   (def fetch! (partial -fetch! impl)))
