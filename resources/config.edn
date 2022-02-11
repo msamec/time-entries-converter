@@ -5,7 +5,18 @@
                                                     :migration-dir "migrations/"
                                                     :migration-table-name "migrations"
                                                     :db #ref [:infrastructure.config/configuration :db-uri]}}
- :infrastructure.handler/app {:oauth2 {:google #ref [:infrastructure.config/configuration :secrets :google-oauth2]}}
+ :infrastructure.handler/app {:oauth2
+                              {:google
+                               {:authorize-uri "https://accounts.google.com/o/oauth2/v2/auth"
+                                :access-token-uri "https://oauth2.googleapis.com/token"
+                                :client-id #profile {:test ""
+                                                     :default #ref [:infrastructure.config/configuration :secrets :google-client-id]}
+                                :client-secret #profile {:test ""
+                                                         :default #ref [:infrastructure.config/configuration :secrets :google-client-secret]}
+                                :scopes ["openid"]
+                                :launch-uri "/oauth2/google"
+                                :redirect-uri "/oauth2/google/callback"
+                                :landing-uri "/"}}}
  :infrastructure.server/jetty {:handler #ig/ref :infrastructure.handler/app :port 3000}
  :infrastructure.http/toggl {}
  :domain/entry-repository {:impl #ig/ref :infrastructure.http/toggl}
