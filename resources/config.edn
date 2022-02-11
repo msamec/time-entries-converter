@@ -4,7 +4,10 @@
                                        :migrations {:store :database
                                                     :migration-dir "migrations/"
                                                     :migration-table-name "migrations"
-                                                    :db #ref [:infrastructure.config/configuration :db-uri]}}
+                                                    :db #ref [:infrastructure.config/configuration :db-uri]}
+                                       :mailer {:host "localhost"
+                                                :port 1025
+                                                :from "marko@test.com"}}
  :infrastructure.handler/app {:oauth2
                               {:google
                                {:authorize-uri "https://accounts.google.com/o/oauth2/v2/auth"
@@ -18,7 +21,7 @@
                                 :redirect-uri "/oauth2/google/callback"
                                 :landing-uri "/"}}}
 
- :infrastructure.jobs/send-email {}
+ :infrastructure.jobs/send-reminder-email {}
  :infrastructure.server/jetty {:handler #ig/ref :infrastructure.handler/app :port 3000}
  :infrastructure.http/toggl {}
  :domain/entry-repository {:impl #ig/ref :infrastructure.http/toggl}
@@ -28,5 +31,7 @@
  :domain/credential-repository {:impl #ig/ref :infrastructure.database/credential}
  :infrastructure.queue/proletarian {:db #ref [:infrastructure.config/configuration :db-uri]
                                     :config {:proletarian/polling-interval-ms 2000}
-                                    :jobs {:send-email #ig/ref :infrastructure.jobs/send-email}}
- :domain/worker {:impl #ig/ref :infrastructure.queue/proletarian}}
+                                    :jobs {:send-reminder-email #ig/ref :infrastructure.jobs/send-reminder-email}}
+ :domain/worker {:impl #ig/ref :infrastructure.queue/proletarian}
+ :infrastructure.mailer/postal {:config #ref [:infrastructure.config/configuration :mailer]}
+ :domain/mailer {:impl #ig/ref :infrastructure.mailer/postal}}
