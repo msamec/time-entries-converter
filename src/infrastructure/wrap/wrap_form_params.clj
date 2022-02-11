@@ -2,7 +2,7 @@
   (:require [ring.util.codec :refer [assoc-conj]]
             [clojure.walk :refer [keywordize-keys]]))
 
-(defn parse-nested-keys
+(defn- parse-nested-keys
   [param-name]
   (let [[_ k ks] (re-matches #"(?s)(.*?)((?:\[.*?\])*)" (name param-name))
         keys     (if ks (map second (re-seq #"\[(.*?)\]" ks)))]
