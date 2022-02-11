@@ -49,5 +49,5 @@
 
 (defflow fetch-non-existan-credential
   {:init init}
-  [credential (fetch-credential "non-exstsn")]
+  [credential (fetch-credential "non-exstant")]
   (match? credential nil))

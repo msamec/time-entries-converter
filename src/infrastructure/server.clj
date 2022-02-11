@@ -7,6 +7,7 @@
   (jetty/run-jetty handler (-> opts (dissoc handler) (assoc :join? false))))
 
 (defn -main []
-  (let [config config/all]
+  (let [config (config/fetch)]
     (ig/load-namespaces config)
     (ig/init config)))
+

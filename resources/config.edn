@@ -1,15 +1,15 @@
-{:infrastructure.config/secrets #include #join [".secrets.edn"]
- :infrastructure.handler/app {:oauth2 {:google #ref [:infrastructure.config/secrets :google-oauth2]}}
- :infrastructure.server/jetty {:handler #ig/ref :infrastructure.handler/app :port 3000}
- :infrastructure.http/toggl {}
- :domain/entry-repository {:impl #ig/ref :infrastructure.http/toggl} ;TODO: depenods on global state, not too happy about it
- :infrastructure.http/tempo {}
- :domain/worklog-repository {:impl #ig/ref :infrastructure.http/tempo} ;TODO: depenods on global state, not too happy about it
- :infrastructure.database/credential {:db-uri #profile {:default #ref [:infrastructure.config/secrets :db]
-                                                        :test "jdbc:postgresql://localhost:54321/postgres?user=postgres&password=postgres"}}
- :domain/credential-repository {:impl #ig/ref :infrastructure.database/credential} ;TODO: depenods on global state, not too happy about it
- :infrastructure.config/configuration {:migrations {:store :database
+{:infrastructure.config/configuration {:secrets #include #join [".secrets.edn"]
+                                       :db-uri #profile {:test "jdbc:postgresql://localhost:54321/postgres?user=postgres&password=postgres"
+                                                         :default #ref [:infrastructure.config/configuration :secrets :db]}
+                                       :migrations {:store :database
                                                     :migration-dir "migrations/"
                                                     :migration-table-name "migrations"
-                                                    :db #ref [:infrastructure.config/secrets :db]}}}
-
+                                                    :db #ref [:infrastructure.config/configuration :db-uri]}}
+ :infrastructure.handler/app {:oauth2 {:google #ref [:infrastructure.config/configuration :secrets :google-oauth2]}}
+ :infrastructure.server/jetty {:handler #ig/ref :infrastructure.handler/app :port 3000}
+ :infrastructure.http/toggl {}
+ :domain/entry-repository {:impl #ig/ref :infrastructure.http/toggl}
+ :infrastructure.http/tempo {}
+ :domain/worklog-repository {:impl #ig/ref :infrastructure.http/tempo}
+ :infrastructure.database/credential {:db-uri #ref [:infrastructure.config/configuration :db-uri]}
+ :domain/credential-repository {:impl #ig/ref :infrastructure.database/credential}}

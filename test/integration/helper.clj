@@ -6,6 +6,12 @@
 
 (def state* (atom nil))
 
+(def migrations-config (->
+                        :test
+                        (config/fetch)
+                        :infrastructure.config/configuration
+                        :migrations))
+
 (defn get-system []
   (-> state* deref :system))
 
@@ -18,7 +24,7 @@
   (.close pg))
 
 (defn start-system! []
-  (let [config config/all]
+  (let [config (config/fetch :test)]
     (ig/load-namespaces config)
     (ig/init config)))
 
@@ -28,8 +34,8 @@
 (defn with-system! [f]
   (try
     (let [pg (start-pg!)
+          _ (migratus/migrate migrations-config)
           system (start-system!)]
-      (migratus/up (-> config/fetch :migrations))
       (reset! state* {:pg pg :system system})
       (f))
     (catch Exception e
@@ -50,5 +56,5 @@
         (.printStackTrace e)
         (throw e)))
     (finally
-      (migratus/down (-> config/fetch :migrations))
-      (migratus/up (-> config/fetch :migrations)))))
+      (migratus/reset migrations-config))))
+

@@ -1,6 +1,6 @@
-CREATE TABLE credentialsx
+CREATE TABLE credentials
 (
-  id int PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   user_id varchar(64) NOT NULL UNIQUE,
   options JSON
 );

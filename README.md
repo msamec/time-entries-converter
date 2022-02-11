@@ -59,7 +59,6 @@ clj -m infrastructure.server
 
 ## TODO
 - [] success/failure message on redirect
-- [] extract oauth/db credentials to .secrets.edn
 - [] handle http requests other than 200
 - [] wrap-auth -> it should check validiti of jwt like exp, domain, etc.
 - [] simplify migration for development
@@ -72,4 +71,4 @@ clj -m infrastructure.server
 - [] use named routes insted of hardcoded
 - [] loading overlay when syncing starts
 - [] default 404 and 500 page
-
+- [] config.edn could be tidier
