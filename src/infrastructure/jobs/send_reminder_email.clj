@@ -6,4 +6,4 @@
 
 (defmethod ig/init-key :infrastructure.jobs/send-reminder-email [_ _]
   (fn [to]
-    (clojure.pprint/pprint (mailer/send! (to-map (->SendReminderMessage to))))))
+    (mailer/send! (to-map (->SendReminderMessage to)))))

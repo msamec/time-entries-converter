@@ -8,3 +8,6 @@
 
 (defmethod ig/init-key :domain/mailer [_ {:keys [impl]}]
   (def send! (partial -send! impl)))
+
+(comment
+  (send! (->Message "test@test.com")))

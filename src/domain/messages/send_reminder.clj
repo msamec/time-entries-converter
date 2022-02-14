@@ -4,6 +4,7 @@
 (defrecord SendReminderMessage [to]
   Message
   (to-map [this] {:to to
-              :subject "Reminder"
-              :body "body"}))
+                  :subject "Reminder"
+                  :body "Sync your hours"
+                  :template "send-reminder"}))
 
