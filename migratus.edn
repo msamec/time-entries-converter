@@ -1,0 +1,4 @@
+{:store :database
+ :migration-dir "migrations/"
+ :migration-table-name "migrations"
+ :db "jdbc:postgresql://localhost:5433/mini?user=postgres&password=postgres"}
