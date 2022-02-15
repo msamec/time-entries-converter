@@ -58,17 +58,18 @@ clj -m infrastructure.server
 ```
 
 ## TODO
-- [] success/failure message on redirect
-- [] handle http requests other than 200
-- [] wrap-auth -> it should check validiti of jwt like exp, domain, etc.
-- [] simplify migration for development
-- [] test coverage
+- [ ] success/failure message on redirect
+- [ ] handle http requests other than 200
+- [ ] wrap-auth -> it should check validiti of jwt like exp, domain, etc.
+- [ ] simplify migration for development
 
 ## NICE TO HAVE
-- [] better DI integration
-- [] log errors
-- [] add validation to request input data
-- [] use named routes insted of hardcoded
-- [] loading overlay when syncing starts
-- [] default 404 and 500 page
-- [] config.edn could be tidier
+- [ ] better DI integration
+- [ ] log errors
+- [ ] add validation to request input data
+- [ ] use named routes insted of hardcoded
+- [ ] loading overlay when syncing starts
+- [ ] default 404 and 500 page
+- [ ] config.edn could be tidier
+- [ ] mock should implement interface instead of impementation but it requires `config.edn` refactor
+- [ ] generally mock could be done better

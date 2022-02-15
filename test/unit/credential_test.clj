@@ -1,4 +1,4 @@
-(ns unit.src.domain.credential-test
+(ns unit.credential-test
   (:require [clojure.test :refer [deftest is testing]]
             [domain.credential :as credential]))
 

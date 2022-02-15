@@ -1,4 +1,4 @@
-(ns unit.src.domain.date-test
+(ns unit.date-test
   (:require [clojure.test :refer [deftest is testing]]
             [domain.date :as date]))
 

@@ -1,4 +1,4 @@
-(ns integration.src.application.credential-test
+(ns integration.credential-test
   (:require [clojure.test :refer [use-fixtures]]
             [state-flow.assertions.matcher-combinators :refer [match?]]
             [state-flow.api :as flow :refer [flow]]

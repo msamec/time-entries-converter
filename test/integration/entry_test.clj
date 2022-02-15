@@ -1,11 +1,11 @@
-(ns integration.src.application.entry-test
+(ns integration.entry-test
   (:require [clojure.test :refer [use-fixtures]]
             [integration.helper :refer [with-system! reset-db! get-system]]
             [state-flow.api :as flow :refer [flow]]
             [state-flow.cljtest :refer [defflow]]
             [application.fetch-entires :as fetch-entries]
             [state-flow.assertions.matcher-combinators :refer [match?]]
-            [integration.src.application.credential-test :as credential]))
+            [integration.credential-test :as credential]))
 
 (use-fixtures :once (partial with-system! {:mock {:infrastructure.http/toggl :integration.mocks/toggl}}))
 
