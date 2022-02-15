@@ -1,4 +1,4 @@
-(ns unit.src.domain.entry-test
+(ns unit.entry-test
   (:require [clojure.test :refer [deftest is]]
             [domain.entry :as entry]))
 

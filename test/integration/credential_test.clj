@@ -1,4 +1,4 @@
-(ns integration.src.application.credential-test
+(ns integration.credential-test
   (:require [clojure.test :refer [use-fixtures]]
             [state-flow.assertions.matcher-combinators :refer [match?]]
             [state-flow.api :as flow :refer [flow]]
@@ -7,7 +7,7 @@
             [application.fetch-credential :as fetch-credential]
             [integration.helper :refer [with-system! reset-db! get-system]]))
 
-(use-fixtures :once with-system!)
+(use-fixtures :once (partial with-system!))
 
 (use-fixtures :each reset-db!)
 
