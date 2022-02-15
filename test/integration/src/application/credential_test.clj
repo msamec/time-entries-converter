@@ -7,7 +7,7 @@
             [application.fetch-credential :as fetch-credential]
             [integration.helper :refer [with-system! reset-db! get-system]]))
 
-(use-fixtures :once with-system!)
+(use-fixtures :once (partial with-system!))
 
 (use-fixtures :each reset-db!)
 
