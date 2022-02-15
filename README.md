@@ -39,22 +39,18 @@ docker-compose up -d
 Hook into psql
 
 ```
-docker-compose exec db psql -U postgres -d mini
-```
-
-and then run 
-
-```
-CREATE TABLE credentials(
-  id SERIAL PRIMAY KEY,
-  user_id VARCHAR(64) NOT NULL UNIQUE,
-  options JSON
-);
+clj -M:migrate migrate
 ```
 ## Usage
 
 ```
 clj -m infrastructure.server
+```
+
+## Running tests
+
+```
+bin/kaocha
 ```
 
 ## TODO
