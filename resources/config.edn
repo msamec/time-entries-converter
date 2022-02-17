@@ -1,9 +1,5 @@
 {:infrastructure.config/configuration {:db-uri #profile {:test "jdbc:postgresql://localhost:54321/postgres?user=postgres&password=postgres"
                                                          :default #env DATABASE}
-                                       :migrations {:store :database
-                                                    :migration-dir "migrations/"
-                                                    :migration-table-name "migrations"
-                                                    :db #ref [:infrastructure.config/configuration :db-uri]}
                                        :mailer {:host "localhost"
                                                 :port 1025
                                                 :from "marko@test.com"}}

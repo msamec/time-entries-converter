@@ -7,11 +7,16 @@
 
 (def state* (atom nil))
 
-(def migrations-config (->
-                        :test
-                        (config/fetch)
-                        :infrastructure.config/configuration
-                        :migrations))
+(def db-uri (->
+             :test
+             (config/fetch)
+             :infrastructure.config/configuration
+             :db-uri))
+
+(def migrations-config {:store :database
+                        :migration-dir "migrations/"
+                        :migration-table-name "migrations"
+                        :db db-uri})
 
 (defn get-system []
   (-> state* deref :system))
