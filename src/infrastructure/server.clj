@@ -1,4 +1,5 @@
 (ns infrastructure.server
+  (:gen-class)
   (:require [ring.adapter.jetty :as jetty]
             [integrant.core :as ig]
             [infrastructure.config :as config]))

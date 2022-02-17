@@ -8,5 +8,6 @@
   :middleware     [lein-tools-deps.plugin/resolve-dependencies-with-deps-edn]
   :uberjar-name  "app-standalone.jar"
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}
-             :provided {:lein-tools-deps/config {:config-files [:install :user :project "deps.edn"]}}})
+  :lein-tools-deps/config {:config-files [:install :user :project]}
+  :min-lein-version "2.0.0"
+  :profiles {:uberjar {:aot :all}})
