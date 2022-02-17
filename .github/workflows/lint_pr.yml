@@ -5,7 +5,7 @@ on:
     types:
       - opened
       - edited
-      - syncornize
+      - syncronize
 
 jobs:
   lint-pr:
