@@ -1,5 +1,5 @@
 {:infrastructure.config/configuration {:db-uri #profile {:test "jdbc:postgresql://localhost:54321/postgres?user=postgres&password=postgres"
-                                                         :default #env DATABASE_URL}
+                                                         :default #env DATABAS}
                                        :migrations {:store :database
                                                     :migration-dir "migrations/"
                                                     :migration-table-name "migrations"
