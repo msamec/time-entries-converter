@@ -1,13 +1,12 @@
 name: Tests
 on:
   push:
-    branhces:
+    branches:
       - master
       - 'feature/**'
 jobs:
   test:
     runs-on: ubuntu-latest
-    environment: test
     steps:
       - name: Checkout
         uses: actions/checkout@v2
