@@ -1,10 +1,5 @@
-{:infrastructure.config/configuration {:secrets #include #join [".secrets.edn"]
-                                       :db-uri #profile {:test "jdbc:postgresql://localhost:54321/postgres?user=postgres&password=postgres"
-                                                         :default #ref [:infrastructure.config/configuration :secrets :db]}
-                                       :migrations {:store :database
-                                                    :migration-dir "migrations/"
-                                                    :migration-table-name "migrations"
-                                                    :db #ref [:infrastructure.config/configuration :db-uri]}
+{:infrastructure.config/configuration {:db-uri #profile {:test "jdbc:postgresql://localhost:54321/postgres?user=postgres&password=postgres"
+                                                         :default #env DATABASE}
                                        :mailer {:host "localhost"
                                                 :port 1025
                                                 :from "marko@test.com"}}
@@ -13,16 +8,16 @@
                                {:authorize-uri "https://accounts.google.com/o/oauth2/v2/auth"
                                 :access-token-uri "https://oauth2.googleapis.com/token"
                                 :client-id #profile {:test ""
-                                                     :default #ref [:infrastructure.config/configuration :secrets :google-client-id]}
+                                                     :default #env GOOGLE_CLIENT_ID}
                                 :client-secret #profile {:test ""
-                                                         :default #ref [:infrastructure.config/configuration :secrets :google-client-secret]}
+                                                         :default #env GOOGLE_CLIENT_SECRET}
                                 :scopes ["openid"]
                                 :launch-uri "/oauth2/google"
                                 :redirect-uri "/oauth2/google/callback"
                                 :landing-uri "/"}}}
 
  :infrastructure.jobs/send-reminder-email {}
- :infrastructure.server/jetty {:handler #ig/ref :infrastructure.handler/app :port 3000}
+ :infrastructure.server/jetty {:handler #ig/ref :infrastructure.handler/app :port #long #or [#env PORT 3000]}
  :infrastructure.http/toggl {}
  :domain/entry-repository {:impl #ig/ref :infrastructure.http/toggl}
  :infrastructure.http/tempo {}
