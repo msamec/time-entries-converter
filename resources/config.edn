@@ -17,7 +17,7 @@
                                 :landing-uri "/"}}}
 
  :infrastructure.jobs/send-reminder-email {}
- :infrastructure.server/jetty {:handler #ig/ref :infrastructure.handler/app :port 3000}
+ :infrastructure.server/jetty {:handler #ig/ref :infrastructure.handler/app :port #long #or [#env PORT 3000]}
  :infrastructure.http/toggl {}
  :domain/entry-repository {:impl #ig/ref :infrastructure.http/toggl}
  :infrastructure.http/tempo {}
